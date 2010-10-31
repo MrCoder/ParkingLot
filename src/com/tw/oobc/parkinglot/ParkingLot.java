@@ -30,4 +30,8 @@ public class ParkingLot {
     private boolean isFull() {
         return available == capacity;
     }
+
+    float getEmptyRate() {
+        return getAvailableSpots()/(float ) getCapacity();
+    }
 }

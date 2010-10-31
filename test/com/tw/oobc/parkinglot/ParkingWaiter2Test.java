@@ -19,6 +19,5 @@ public class ParkingWaiter2Test {
         parkingWaiter2.park();
         assertThat(parkingLot2.getAvailableSpots(), is(0));
         assertThat(parkingLot5.getAvailableSpots(), is(2));
-
     }
 }
