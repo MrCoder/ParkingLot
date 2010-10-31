@@ -1,7 +1,13 @@
 package com.tw.oobc.parkinglot;
 
 public class ParkingLot {
-    public ParkingLot(int capacity) {
+    private Integer capacity;
 
+    public ParkingLot(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public int getCapacity() {
+        return capacity;
     }
 }
