@@ -3,6 +3,7 @@ package com.tw.oobc.parkinglot;
 import org.junit.Test;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.fail;
 
 public class ParkingLotTest {
     @Test
@@ -28,11 +29,27 @@ public class ParkingLotTest {
         assertThat(parkingLot.getAvailableSpots(), is(0));
     }
 
-    @Test(expected = NoAvailableSpotsException.class)
-    public void should_throw_exception_when_parking_when_no_available_spots() throws NoAvailableSpotsException {
+    @Test
+    public void should_throw_exception_when_parking_when_no_available_spots() {
         ParkingLot parkingLot = new ParkingLot(0);
-        parkingLot.park();
+        try {
+            parkingLot.park();
+            fail("Should throw an exception.");
+        } catch (NoAvailableSpotsException e) {
+
+        }
         assertThat(parkingLot.getAvailableSpots(), is(0));
     }
+
+    @Test
+    public void should_increase_available_number_after_unParking() throws NoAvailableSpotsException {
+        ParkingLot parkingLot = new ParkingLot(1);
+        parkingLot.park();
+        assertThat(parkingLot.getAvailableSpots(), is(0));
+        parkingLot.unpark();
+        assertThat(parkingLot.getAvailableSpots(), is(1));
+    }
+
+
 
 }

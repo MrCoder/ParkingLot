@@ -21,4 +21,8 @@ public class ParkingLot {
         if (available <= 0) throw new NoAvailableSpotsException();
         available--;
     }
+
+    public void unpark() {
+        available++;
+    }
 }
