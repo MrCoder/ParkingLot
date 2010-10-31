@@ -21,10 +21,17 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void should_decrease_available_number_after_parking(){
+    public void should_decrease_available_number_after_parking() throws NoAvailableSpotsException {
         ParkingLot parkingLot = new ParkingLot(1);
         parkingLot.park();
         assertThat(parkingLot.getCapacity(), is(1));
+        assertThat(parkingLot.getAvailableSpots(), is(0));
+    }
+
+    @Test(expected = NoAvailableSpotsException.class)
+    public void should_throw_exception_when_parking_when_no_available_spots() throws NoAvailableSpotsException {
+        ParkingLot parkingLot = new ParkingLot(0);
+        parkingLot.park();
         assertThat(parkingLot.getAvailableSpots(), is(0));
     }
 

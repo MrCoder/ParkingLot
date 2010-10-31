@@ -17,7 +17,8 @@ public class ParkingLot {
         return available;
     }
 
-    public void park() {
+    public void park() throws NoAvailableSpotsException {
+        if (available <= 0) throw new NoAvailableSpotsException();
         available--;
     }
 }
