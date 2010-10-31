@@ -9,29 +9,33 @@ public class ParkingLot {
         this.available = capacity;
     }
 
-    public int getCapacity() {
-        return capacity;
-    }
-
     public int getAvailableSpots() {
         return available;
     }
 
     public void park() throws NoAvailableSpotsException {
-        if (available <= 0) throw new NoAvailableSpotsException();
+        if (!hasAvailableSpaces()) throw new NoAvailableSpotsException();
         available--;
     }
 
     public void unPark() throws UnParkingAnEmptyParkingLotException {
-        if(isFull()) throw new UnParkingAnEmptyParkingLotException();
+        if(!hasParkedCars()) throw new UnParkingAnEmptyParkingLotException();
         available++;
     }
 
-    private boolean isFull() {
-        return available == capacity;
+    private boolean hasParkedCars() {
+        return capacity - available > 0;
     }
 
-    float getEmptyRate() {
-        return getAvailableSpots()/(float ) getCapacity();
+    public boolean hasAvailableSpaces() {
+        return available > 0;
+    }
+
+    boolean hasMoreAvailableSpaces(ParkingLot parkingLotNext) {
+        return available < parkingLotNext.available;
+    }
+
+    boolean hasHigherEmptyRate(ParkingLot parkingLotNext) {
+        return available / (float) capacity < parkingLotNext.available / (float) parkingLotNext.capacity;
     }
 }
