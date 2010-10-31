@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParkingWaiter {
-    private List<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
+    protected List<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
 
     public void addParkingLot(ParkingLot parkingLot) {
         parkingLots.add(parkingLot);
