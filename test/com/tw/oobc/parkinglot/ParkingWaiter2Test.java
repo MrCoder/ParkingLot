@@ -13,7 +13,7 @@ public class ParkingWaiter2Test {
         parkingLot5.park();
         parkingLot5.park();
         parkingLot5.park();
-        ParkingWaiter2 parkingWaiter2 = new ParkingWaiter2();
+        ParkingWaiter parkingWaiter2 = new ParkingWaiter(new ParkingLotSelectorPreferEmptyRate());
         parkingWaiter2.addParkingLot(parkingLot2);
         parkingWaiter2.addParkingLot(parkingLot5);
         parkingWaiter2.park();

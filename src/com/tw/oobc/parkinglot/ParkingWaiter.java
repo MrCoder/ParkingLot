@@ -5,7 +5,12 @@ import java.util.List;
 
 public class ParkingWaiter{
     protected List<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
-    private ParkingLotSelectorPreferAvailable parkingLotSelectorPreferAvailable = new ParkingLotSelectorPreferAvailable();
+    protected ParkingLotSelector parkingLotSelector;
+
+    public ParkingWaiter(ParkingLotSelector parkingLotSelector){
+
+        this.parkingLotSelector = parkingLotSelector;
+    }
 
     public void addParkingLot(ParkingLot parkingLot) {
         parkingLots.add(parkingLot);
@@ -32,6 +37,6 @@ public class ParkingWaiter{
     }
 
     public boolean preferNext(ParkingLot parkingLot, ParkingLot parkingLotNext) {
-        return parkingLotSelectorPreferAvailable.preferNext(parkingLot, parkingLotNext);
+        return parkingLotSelector.preferNext(parkingLot, parkingLotNext);
     }
 }
