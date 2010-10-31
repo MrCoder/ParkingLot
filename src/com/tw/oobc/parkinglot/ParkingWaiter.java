@@ -15,9 +15,13 @@ public class ParkingWaiter {
     }
 
     public void park() throws NoAvailableSpotsException {
-        for (ParkingLot parkingLot : parkingLots) {
-            if(parkingLot.getAvailableSpots() > 0) parkingLot.park();
+        int indexOfParkingTo = 0;
+        for(int i = 0; i < parkingLots.size() - 1; i++){
+            if (parkingLots.get(i).getAvailableSpots() < parkingLots.get(i + 1).getAvailableSpots()){
+                indexOfParkingTo = 1 + i;
+            }
         }
-        
+
+        parkingLots.get(indexOfParkingTo).park();
     }
 }

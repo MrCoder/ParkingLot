@@ -2,6 +2,7 @@ package com.tw.oobc.parkinglot;
 
 import org.junit.Test;
 
+import static junit.framework.Assert.fail;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
 
@@ -24,4 +25,32 @@ public class ParkingWaiterTest {
         parkingWaiter.park();
         assertThat(parkingLot1.getAvailableSpots(), is(0));
     }
+
+    @Test
+    public void should_throw_exception_when_all_parking_lots_are_full(){
+        ParkingWaiter parkingWaiter = new ParkingWaiter();
+        ParkingLot parkingLot1 = new ParkingLot(0);
+        parkingWaiter.addParkingLot(parkingLot1);
+        try {
+            parkingWaiter.park();
+            fail("Should throw exception");
+        } catch (NoAvailableSpotsException e) {
+        }
+
+        assertThat(parkingLot1.getAvailableSpots(), is(0));
+    }
+
+    @Test
+    public void should_only_park_into_most_empty_lot() throws NoAvailableSpotsException {
+        ParkingLot parkingLot1 = new ParkingLot(1);
+        ParkingLot parkingLot2 = new ParkingLot(2);
+        ParkingWaiter parkingWaiter = new ParkingWaiter();
+        parkingWaiter.addParkingLot(parkingLot1);
+        parkingWaiter.addParkingLot(parkingLot2);
+        parkingWaiter.park();
+        assertThat(parkingLot1.getAvailableSpots(), is(1));
+        assertThat(parkingLot2.getAvailableSpots(), is(1));
+    }
+
+
 }
