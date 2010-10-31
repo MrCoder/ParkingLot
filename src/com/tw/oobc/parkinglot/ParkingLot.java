@@ -22,7 +22,12 @@ public class ParkingLot {
         available--;
     }
 
-    public void unpark() {
+    public void unPark() throws UnParkingAnEmptyParkingLotException {
+        if(isFull()) throw new UnParkingAnEmptyParkingLotException();
         available++;
+    }
+
+    private boolean isFull() {
+        return available == capacity;
     }
 }

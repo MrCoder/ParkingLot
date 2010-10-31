@@ -42,14 +42,28 @@ public class ParkingLotTest {
     }
 
     @Test
-    public void should_increase_available_number_after_unParking() throws NoAvailableSpotsException {
-        ParkingLot parkingLot = new ParkingLot(1);
-        parkingLot.park();
-        assertThat(parkingLot.getAvailableSpots(), is(0));
-        parkingLot.unpark();
+    public void should_increase_available_number_after_unParking() throws NoAvailableSpotsException, UnParkingAnEmptyParkingLotException {
+        ParkingLot parkingLot = given_a_parking_lot_capacity_of_1_is_full();
+        parkingLot.unPark();
         assertThat(parkingLot.getAvailableSpots(), is(1));
     }
 
+    private ParkingLot given_a_parking_lot_capacity_of_1_is_full() throws NoAvailableSpotsException {
+        ParkingLot parkingLot = new ParkingLot(1);
+        parkingLot.park();
+        assertThat(parkingLot.getAvailableSpots(), is(0));
+        return parkingLot;
+    }
 
+    @Test
+    public void should_throw_exception_when_unParking_from_an_empty_parkinglot() {
+        ParkingLot parkingLot = new ParkingLot(0);
+        try {
+            parkingLot.unPark();
+            fail("Should throw exception");
+        } catch (UnParkingAnEmptyParkingLotException e) {
+        }
+        assertThat(parkingLot.getAvailableSpots(), is(0));
+    }
 
 }
