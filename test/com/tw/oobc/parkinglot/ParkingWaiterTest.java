@@ -1,27 +1,14 @@
 package com.tw.oobc.parkinglot;
 
 import org.junit.Test;
-import org.mockito.InOrder;
 
 import static junit.framework.Assert.fail;
-import static org.junit.Assert.assertThat;
-import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.Mockito.*;
 
 public class ParkingWaiterTest {
     private ParkingLotListener parkingLotListener = mock(ParkingLotListener.class);
     private final String TW_PARKING_LOT = "TW Parking Lot";
 
-    @Test
-    public void can_assign_parking_lots_to_the_waiter() {
-        ParkingWaiter parkingWaiter = new ParkingWaiter(new ParkingLotSelectorPreferAvailable());
-        ParkingLot parkingLot1 = preparing_parking_lot("TW Parking Lot1", 1);
-        parkingWaiter.addParkingLot(parkingLot1);
-        assertThat(parkingWaiter.getNumberOfParkingLots(), is(1));
-        ParkingLot parkingLot2 = preparing_parking_lot("TW Parking Lot", 2);
-        parkingWaiter.addParkingLot(parkingLot2);
-        assertThat(parkingWaiter.getNumberOfParkingLots(), is(2));
-    }
 
     private ParkingLot preparing_parking_lot(String name, int capacity) {
         ParkingLot parkingLot1 = new ParkingLot(name, capacity);

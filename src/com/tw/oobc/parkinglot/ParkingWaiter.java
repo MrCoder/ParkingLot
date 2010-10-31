@@ -16,10 +16,6 @@ public class ParkingWaiter{
         parkingLots.add(parkingLot);
     }
 
-    public int getNumberOfParkingLots() {
-        return parkingLots.size();
-    }
-
     public void park() throws NoAvailableSpotsException {
         ParkingLot parkingTo = getParkingTo();
         parkingTo.park();
@@ -28,7 +24,7 @@ public class ParkingWaiter{
     protected ParkingLot getParkingTo() {
         int indexOfParkingTo = 0;
         for(int i = 0; i < parkingLots.size() - 1; i++){
-            if (preferNext(parkingLots.get(i), parkingLots.get(i + 1))){
+            if (parkingLotSelector.preferNext(parkingLots.get(i), parkingLots.get(i + 1))){
                 indexOfParkingTo = 1 + i;
             }
         }
@@ -36,7 +32,4 @@ public class ParkingWaiter{
         return parkingLots.get(indexOfParkingTo);
     }
 
-    public boolean preferNext(ParkingLot parkingLot, ParkingLot parkingLotNext) {
-        return parkingLotSelector.preferNext(parkingLot, parkingLotNext);
-    }
 }
