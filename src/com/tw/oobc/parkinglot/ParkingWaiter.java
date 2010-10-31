@@ -15,13 +15,22 @@ public class ParkingWaiter {
     }
 
     public void park() throws NoAvailableSpotsException {
+        ParkingLot parkingTo = getParkingTo();
+        parkingTo.park();
+    }
+
+    protected ParkingLot getParkingTo() {
         int indexOfParkingTo = 0;
         for(int i = 0; i < parkingLots.size() - 1; i++){
-            if (parkingLots.get(i).getAvailableSpots() < parkingLots.get(i + 1).getAvailableSpots()){
+            if (preferNext(parkingLots.get(i), parkingLots.get(i + 1))){
                 indexOfParkingTo = 1 + i;
             }
         }
 
-        parkingLots.get(indexOfParkingTo).park();
+        return parkingLots.get(indexOfParkingTo);
+    }
+
+    protected boolean preferNext(ParkingLot parkingLot, ParkingLot parkingLotNext) {
+        return parkingLot.getAvailableSpots() < parkingLotNext.getAvailableSpots();
     }
 }
