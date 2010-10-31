@@ -3,8 +3,9 @@ package com.tw.oobc.parkinglot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParkingWaiter {
+public class ParkingWaiter{
     protected List<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
+    private ParkingLotSelectorPreferAvailable parkingLotSelectorPreferAvailable = new ParkingLotSelectorPreferAvailable();
 
     public void addParkingLot(ParkingLot parkingLot) {
         parkingLots.add(parkingLot);
@@ -30,7 +31,7 @@ public class ParkingWaiter {
         return parkingLots.get(indexOfParkingTo);
     }
 
-    protected boolean preferNext(ParkingLot parkingLot, ParkingLot parkingLotNext) {
-        return parkingLot.getAvailableSpots() < parkingLotNext.getAvailableSpots();
+    public boolean preferNext(ParkingLot parkingLot, ParkingLot parkingLotNext) {
+        return parkingLotSelectorPreferAvailable.preferNext(parkingLot, parkingLotNext);
     }
 }
