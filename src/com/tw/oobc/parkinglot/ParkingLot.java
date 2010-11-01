@@ -48,4 +48,9 @@ public class ParkingLot {
     private boolean hasAvailableSpaces() {
         return available > 0;
     }
+
+    public String printReport() {
+        return name+":"+available+"/"+capacity;
+    }
+
 }
