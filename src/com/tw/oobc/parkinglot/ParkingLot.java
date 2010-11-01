@@ -49,8 +49,8 @@ public class ParkingLot {
         return available > 0;
     }
 
-    public String printReport() {
-        return name+":"+available+"/"+capacity;
+    public String printReport(Reporter reporter){
+        return reporter.printParkingLot(name, available, capacity);
     }
 
 }

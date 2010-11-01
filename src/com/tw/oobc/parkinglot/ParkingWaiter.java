@@ -45,22 +45,7 @@ public class ParkingWaiter implements Manager{
     }
 
 
-    public String printReport(int indent) {
-        StringBuilder report = new StringBuilder();
-        report.append(name);
-        report.append("\n");
-        for (ParkingLot manager : parkingLots) {
-            report.append(getSpaces(indent + 2));
-            report.append(manager.printReport());
-        }
-        return report.toString();
-    }
-
-    public String getSpaces(int indent){
-        StringBuilder spacesBuilder = new StringBuilder();
-        for (int i = 0; i < indent; i++){
-            spacesBuilder.append(" ");
-        }
-        return spacesBuilder.toString();
+    public String printReport(Reporter reporter){
+        return reporter.printParkingWaiter(name, parkingLots);
     }
 }

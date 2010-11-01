@@ -58,7 +58,7 @@ public class ParkingManagerTest {
     @Test
     public void should_print_report_for_one_manager() {
         ParkingManager parkingManager = new ParkingManager("Manager1");
-        assertThat(parkingManager.printReport(0), is("Manager1"));
+        assertThat(parkingManager.printReport(new Reporter(0)), is("Manager1"));
     }
 
     @Test
@@ -69,22 +69,35 @@ public class ParkingManagerTest {
 
         waiter.addParkingLot(lot);
         parkingManager.add(waiter);
-        assertThat(parkingManager.printReport(0), is("Manager1\n  waiter1\n    lot1:1/1"));
-        System.out.println(parkingManager.printReport(0));
+        assertThat(parkingManager.printReport(new Reporter(0)), is("Manager1\n  waiter1\n    lot1:1/1"));
+        System.out.println(parkingManager.printReport(new Reporter(0)));
     }
 
     @Test
     public void should_print_report_when_manager_has_manager(){
         ParkingManager roy = new ParkingManager("Roy");
         ParkingManager guoXiao = new ParkingManager("Guo Xiao");
+        ParkingManager xuHao = new ParkingManager("Xu Hao");
         roy.add(guoXiao);
+        roy.add(xuHao);
         ParkingWaiter peng = new ParkingWaiter("Xiao Peng");
         ParkingLot lot = new ParkingLot("lot1", 1);
-
         peng.addParkingLot(lot);
         guoXiao.add(peng);
-        System.out.println(roy.printReport(0));
-        assertThat(roy.printReport(0), is("Roy\n  Guo Xiao\n    Xiao Peng\n      lot1:1/1"));
+
+        ParkingWaiter jian = new ParkingWaiter("Li Jian");
+        ParkingLot lot2 = new ParkingLot("lot2", 1);
+        jian.addParkingLot(lot2);
+        xuHao.add(jian);
+        System.out.println(roy.printReport(new Reporter(0)));
+        assertThat(roy.printReport(new Reporter(0)), is(
+                "Roy\n" +
+                "  Guo Xiao\n" +
+                "    Xiao Peng\n" +
+                "      lot1:1/1\n" +
+                "  Xu Hao\n" +
+                "    Li Jian\n" +
+                "      lot2:1/1\n"));
     }
 
     private ParkingLot prepare_a_parking_lot_and_its_listener(int capacity) {

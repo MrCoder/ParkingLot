@@ -26,25 +26,11 @@ public class ParkingManager implements Manager {
             }
         }
         throw new NoAvailableSpotsException();
-
     }
 
-    public String printReport(int indent) {
-        StringBuilder report = new StringBuilder();
-        report.append(name);
-        report.append("\n");
-        for (Manager manager : managers) {
-            report.append(getSpaces(indent + 2));
-            report.append(manager.printReport(indent + 2));
-        }
-        return report.toString();
+    public String printReport(Reporter reporter){
+        return reporter.printParkingManger(name, managers);
     }
 
-    public String getSpaces(int indent){
-        StringBuilder spacesBuilder = new StringBuilder();
-        for (int i = 0; i < indent; i++){
-            spacesBuilder.append(" ");
-        }
-        return spacesBuilder.toString();
-    }
+
 }
