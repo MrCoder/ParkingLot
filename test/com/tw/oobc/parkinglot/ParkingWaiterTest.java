@@ -64,7 +64,6 @@ public class ParkingWaiterTest {
 
         parkingWaiter2.park(); //into 2
         verify(parkingLotListener, times(1)).parkingIn("TW Parking Lot2");
-//        reset(parkingLotListener);
         parkingWaiter2.park(); //into 5
         verify(parkingLotListener, times(1)).parkingIn("TW Parking Lot5");
         parkingWaiter2.park(); //into 5
