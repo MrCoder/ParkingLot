@@ -58,7 +58,7 @@ public class ParkingManagerTest {
     @Test
     public void should_print_report_for_one_manager() {
         ParkingManager parkingManager = new ParkingManager("Manager1");
-        assertThat(parkingManager.printReport(new Reporter(0)), is("Manager1"));
+        assertThat(parkingManager.printReport(new Reporter()), is("Manager1"));
     }
 
     @Test
@@ -69,8 +69,8 @@ public class ParkingManagerTest {
 
         waiter.addParkingLot(lot);
         parkingManager.add(waiter);
-        assertThat(parkingManager.printReport(new Reporter(0)), is("Manager1\n  waiter1\n    lot1:1/1"));
-        System.out.println(parkingManager.printReport(new Reporter(0)));
+        assertThat(parkingManager.printReport(new Reporter()), is("Manager1\n  waiter1\n    lot1:1/1"));
+        System.out.println(parkingManager.printReport(new Reporter()));
     }
 
     @Test
@@ -89,8 +89,8 @@ public class ParkingManagerTest {
         ParkingLot lot2 = new ParkingLot("lot2", 1);
         jian.addParkingLot(lot2);
         xuHao.add(jian);
-        System.out.println(roy.printReport(new Reporter(0)));
-        assertThat(roy.printReport(new Reporter(0)), is(
+        System.out.println(roy.printReport(new Reporter()));
+        assertThat(roy.printReport(new Reporter()), is(
                 "Roy\n" +
                 "  Guo Xiao\n" +
                 "    Xiao Peng\n" +

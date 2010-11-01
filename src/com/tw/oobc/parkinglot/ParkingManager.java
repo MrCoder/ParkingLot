@@ -29,7 +29,7 @@ public class ParkingManager implements Manager {
     }
 
     public String printReport(Reporter reporter){
-        return reporter.printParkingManger(name, managers);
+        return reporter.printParkingManager(name, managers);
     }
 
 
